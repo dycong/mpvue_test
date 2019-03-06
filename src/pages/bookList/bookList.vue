@@ -13,8 +13,11 @@
 </template>
 <script>
   /*
-  books 向 booksList里传递数据
-    url:'/pages/bookList/main?booksList=' + JSON.stringify(this.booksList)
+  books 向 booksList里传递数据  ?key = value
+  bookList 接收数据
+    mounted(){
+      this.booksList = this.$em.query.key
+    }
   * */
 
   export default {
@@ -23,18 +26,19 @@
         booksList:[]
       }
     },
+    methods:{},
     mounted() {
-      console.log(this)
+      // 接收路由传递过来的数据
       this.booksList = JSON.parse(this.$mp.query.booksList)
     },
-    // 小程序中获取数据的生命周期
-    onLoad(options) {
-      console.log(options)
-    }
+    // 小程序中获取数据的生命周期函数
+    // onLoad(options) {
+    //   console.log(options)
+    // }
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
   #bookListContainer
     display flex
     padding 10rpx

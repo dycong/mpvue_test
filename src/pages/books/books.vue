@@ -1,17 +1,8 @@
 <template>
   <div class="booksSwiper">
     <swiper indicator-dots indicator-color="green" indicator-active-color="deeppink">
-      <swiper-item>
-        <img src="/static/imgs/firstView/1.jpg" alt="">
-      </swiper-item>
-      <swiper-item>
-        <img src="/static/imgs/firstView/2.jpg" alt="">
-      </swiper-item>
-      <swiper-item>
-        <img src="/static/imgs/firstView/3.jpg" alt="">
-      </swiper-item>
-      <swiper-item>
-        <img src="/static/imgs/firstView/nvsheng.jpg" alt="">
+      <swiper-item v-for="(item, index) in handleSwiper" :key="index">
+        <img :src="item.image" alt="">
       </swiper-item>
     </swiper>
     <div class="books">
@@ -20,7 +11,7 @@
         <span class="more" @click="toBookList"> > </span>
       </div>
       <ul class="books_list">
-        <li v-for="(book, index) in booksList" :key="index">
+        <li v-for="(book, index) in booksList" :key="index" @click="toBookDetail(index)">
           <img :src="book.image" alt="">
           <p>《{{book.title}}》</p>
           <p>{{book.author}}</p>
@@ -32,7 +23,7 @@
 
 <script>
   import booksList from './datas/data'
-  console.log(booksList, typeof booksList)
+  // console.log(booksList, typeof booksList)
   export default {
     data () {
       return {
@@ -49,13 +40,24 @@
         wx.navigateTo({
           url:'/pages/bookList/main?booksList=' + JSON.stringify(this.booksList)
         })
+      },
+      toBookDetail(index) {
+        // console.log(index)
+        wx.navigateTo({
+          url:'/pages/bookDetail/main?index=' + index
+        })
+      }
+    },
+    computed:{
+      handleSwiper() {
+        return [...this.booksList].slice(0,3)
       }
     }
 
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
   .booksSwiper
     width 100%;
     swiper

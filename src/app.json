@@ -1,10 +1,35 @@
 {
   "pages": [
     "pages/books/main",
+    "pages/bookDetail/main",
+    "pages/search/main",
+    "pages/personal/main",
     "pages/bookList/main",
     "pages/firstView/main"
   ],
   "window": {
     "navigationBarBackgroundColor": "#02a774"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/books/main",
+        "text": "图书列表",
+        "iconPath": "/static/imgs/tab/book.png",
+        "selectedIconPath": "/static/imgs/tab/book-active.png"
+      },
+      {
+        "pagePath": "pages/search/main",
+        "text": "搜索",
+        "iconPath": "/static/imgs/tab/todo.png",
+        "selectedIconPath": "/static/imgs/tab/todo-active.png"
+      },
+      {
+        "pagePath": "pages/personal/main",
+        "text": "个人中心",
+        "iconPath": "/static/imgs/tab/me.png",
+        "selectedIconPath": "/static/imgs/tab/me-active.png"
+      }
+    ]
   }
 }
